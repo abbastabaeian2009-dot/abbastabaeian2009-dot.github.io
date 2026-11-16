@@ -4,393 +4,715 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080910">
-<title>عباس | طراح و توسعه‌دهنده وب</title>
-<meta name="description" content="وب‌سایت رسمی عباس، طراح و توسعه‌دهنده وب و خالق تجربه‌های دیجیتال.">
+<meta name="theme-color" content="#f2f0e9">
+
+<title>ABBAS — طراح و توسعه‌دهنده وب</title>
+<meta name="description" content="وب‌سایت رسمی عباس؛ طراح و توسعه‌دهنده وب، علاقه‌مند به خلق تجربه‌های دیجیتال متفاوت.">
+<meta name="author" content="Abbas">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#080910;
-  --panel:#10121e;
-  --blue:#42a5ff;
-  --purple:#a855f7;
-  --white:#f5f6ff;
-  --muted:#9296aa;
+  --paper: #f2f0e9;
+  --white: #ffffff;
+  --ink: #171815;
+  --muted: #77786f;
+  --blue: #2948ff;
+  --line: rgba(23,24,21,.15);
+  --lime: #d3f36b;
+  --font: 'Vazirmatn', sans-serif;
 }
 
 * {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html { scroll-behavior:smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
 
 body {
-  background:var(--bg);
-  color:var(--white);
-  font-family:'Vazirmatn',sans-serif;
-  overflow-x:hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-1;
-  background:
-  radial-gradient(ellipse at 15% 15%,#123c7730,transparent 40%),
-  radial-gradient(ellipse at 90% 45%,#8125a52a,transparent 40%);
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-a {text-decoration:none;color:inherit;}
+button {
+  font: inherit;
+}
+
+::selection {
+  background: var(--blue);
+  color: white;
+}
 
 .container {
-  width:min(1120px,90%);
-  margin:auto;
+  width: min(1160px, 90%);
+  margin-inline: auto;
 }
 
 /* NAVIGATION */
 
-nav {
-  position:sticky;
-  top:12px;
-  z-index:100;
-  width:min(1120px,92%);
-  margin:12px auto 0;
-  padding:13px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border:1px solid #ffffff13;
-  background:#10121edb;
-  backdrop-filter:blur(22px);
-  border-radius:18px;
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(242,240,233,.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
 }
 
-.logo {
-  font-size:22px;
-  font-weight:900;
-  background:linear-gradient(90deg,var(--blue),var(--purple));
-  color:transparent;
-  background-clip:text;
+.nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.navlinks {
-  display:flex;
-  gap:27px;
-  color:#b5b8ca;
-  font-size:13px;
+.brand {
+  direction: ltr;
+  font-family: Arial, sans-serif;
+  font-size: 29px;
+  font-weight: 900;
+  letter-spacing: -2px;
 }
 
-.navlinks a:hover {color:var(--blue);}
+.brand span {
+  color: var(--blue);
+}
 
-.nav-cta {
-  border:1px solid #42a5ff65;
-  border-radius:10px;
-  padding:9px 16px;
-  color:var(--blue);
-  font-size:12px;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-links a {
+  font-size: 12px;
+  font-weight: 600;
+  color: #66675f;
+  transition: .25s;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+.nav-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: white;
+  padding: 12px 19px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: .3s;
+}
+
+.nav-action:hover {
+  background: var(--blue);
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: var(--ink);
 }
 
 /* HERO */
 
 .hero {
-  min-height:760px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  gap:55px;
-  padding-top:65px;
-  padding-bottom:75px;
+  padding-top: 85px;
+  padding-bottom: 105px;
 }
 
-.tag {
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:9px 15px;
-  border:1px solid #42a5ff40;
-  background:#42a5ff0c;
-  border-radius:50px;
-  color:#75bdff;
-  font-size:12px;
-  margin-bottom:28px;
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  gap: 65px;
+  align-items: center;
 }
 
-.dot {
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#55e6a5;
-  box-shadow:0 0 12px #55e6a5;
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 29px;
+  height: 2px;
+  background: var(--blue);
 }
 
 .hero h1 {
-  font-size:clamp(38px,6vw,68px);
-  line-height:1.5;
-  font-weight:900;
-  letter-spacing:-2px;
+  font-size: clamp(38px, 6.5vw, 76px);
+  line-height: 1.45;
+  font-weight: 900;
+  letter-spacing: -2px;
 }
 
-.gradient {
-  background:linear-gradient(90deg,#48b5ff,#a879ff);
-  color:transparent;
-  background-clip:text;
+.hero h1 .english {
+  display: block;
+  direction: ltr;
+  text-align: right;
+  font-family: Arial, sans-serif;
+  font-size: clamp(57px, 9vw, 110px);
+  line-height: 1.05;
+  letter-spacing: -7px;
+  color: var(--blue);
 }
 
-.hero p {
-  color:var(--muted);
-  line-height:2.5;
-  font-size:15px;
-  margin:20px 0 32px;
-  max-width:510px;
+.hero-description {
+  max-width: 480px;
+  margin-top: 27px;
+  color: #717269;
+  font-size: 14px;
+  line-height: 2.5;
 }
 
-.buttons {
-  display:flex;
-  flex-wrap:wrap;
-  gap:13px;
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
 }
 
-.btn {
-  padding:14px 23px;
-  border-radius:12px;
-  font-size:13px;
-  font-weight:700;
-  transition:.3s;
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 51px;
+  padding: 0 22px;
+  border: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  transition: .3s;
 }
 
-.primary {
-  color:white;
-  background:linear-gradient(110deg,#168fff,#8551e9);
-  box-shadow:0 8px 35px #438dff32;
+.button-dark {
+  background: var(--ink);
+  color: white;
 }
 
-.secondary {
-  border:1px solid #ffffff25;
-  background:#ffffff08;
+.button-light {
+  background: transparent;
 }
 
-.btn:hover {
-  transform:translateY(-5px);
-  box-shadow:0 10px 35px #428eff38;
+.button:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+  transform: translateY(-3px);
 }
 
-/* PROFILE */
+/* PORTRAIT */
 
-.profile-wrap {
-  position:relative;
-  width:100%;
-  max-width:420px;
-  margin:auto;
+.visual {
+  position: relative;
+  max-width: 460px;
+  width: 100%;
+  margin-inline: auto;
 }
 
-.profile-frame {
-  position:relative;
-  padding:9px;
-  border-radius:35px;
-  background:linear-gradient(145deg,#42a5ff,#8e46e8,#171b31);
-  box-shadow:0 0 70px #397eff24;
-  animation:float 5s ease-in-out infinite;
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: #202b42;
+  aspect-ratio: 4 / 5;
+  border-radius: 3px;
 }
 
-.profile-frame img {
-  width:100%;
-  display:block;
-  border-radius:28px;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  object-position:center;
+.photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
-.profile-glow {
-  position:absolute;
-  inset:15%;
-  background:#6649ff;
-  filter:blur(100px);
-  opacity:.22;
-  z-index:-1;
+.photo:hover img {
+  transform: scale(1.035);
 }
 
-.profile-label {
-  position:absolute;
-  bottom:24px;
-  right:-25px;
-  background:#121522eF;
-  border:1px solid #ffffff24;
-  backdrop-filter:blur(15px);
-  border-radius:14px;
-  padding:13px 19px;
-  font-size:12px;
-  box-shadow:0 10px 40px #0008;
+.photo-caption {
+  position: absolute;
+  bottom: 17px;
+  right: 17px;
+  color: white;
+  background: rgba(15,18,26,.75);
+  backdrop-filter: blur(12px);
+  padding: 10px 15px;
+  font-size: 11px;
 }
 
-@keyframes float {
-  0%,100% {transform:translateY(0);}
-  50% {transform:translateY(-12px);}
+.photo-index {
+  position: absolute;
+  top: -18px;
+  left: -20px;
+  background: var(--lime);
+  color: var(--ink);
+  padding: 16px 19px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  direction: ltr;
 }
 
-/* SECTIONS */
+/* MARQUEE */
 
-section:not(.hero) {padding:90px 0;}
-
-.section-title {
-  text-align:center;
-  margin-bottom:45px;
+.marquee {
+  background: var(--blue);
+  color: white;
+  overflow: hidden;
+  padding: 18px 0;
+  direction: ltr;
 }
 
-.section-title small {
-  color:var(--blue);
-  font-size:12px;
-  letter-spacing:2px;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
 }
 
-.section-title h2 {
-  font-size:32px;
-  margin-top:10px;
-  font-weight:900;
+.marquee-track span {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  padding-right: 65px;
 }
 
-.section-title p {
-  color:var(--muted);
-  font-size:13px;
-  margin-top:12px;
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* SECTION SYSTEM */
+
+.section {
+  padding: 105px 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 45px;
+}
+
+.section-number {
+  direction: ltr;
+  font-family: Arial, sans-serif;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.section-heading h2 {
+  font-size: clamp(27px, 4vw, 43px);
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 270px;
+  line-height: 2.2;
 }
 
 /* ABOUT */
 
-.about-card {
-  padding:35px;
-  border:1px solid #ffffff12;
-  background:linear-gradient(135deg,#141827,#0c0e18);
-  border-radius:25px;
-  line-height:2.6;
-  color:#b9bed0;
-  font-size:14px;
+.about-layout {
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  gap: 65px;
+  align-items: start;
 }
 
-.about-card strong {color:white;}
-
-/* SKILLS */
-
-.skills {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.about-stamp {
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--lime);
+  font-family: Arial, sans-serif;
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: -5px;
 }
 
-.skill {
-  padding:27px 20px;
-  background:#111522;
-  border:1px solid #ffffff12;
-  border-radius:19px;
-  transition:.3s;
+.about-content {
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
 }
 
-.skill:hover {
-  transform:translateY(-7px);
-  border-color:#42a5ff80;
-  background:#151c30;
+.about-content h3 {
+  font-size: 24px;
+  line-height: 2;
+  font-weight: 800;
+  margin-bottom: 17px;
 }
 
-.skill .icon {
-  font-size:29px;
-  margin-bottom:15px;
+.about-content p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 2.8;
 }
 
-.skill h3 {font-size:16px;margin-bottom:10px;}
+/* SERVICES */
 
-.skill p {
-  color:var(--muted);
-  font-size:12px;
-  line-height:2;
+.services {
+  background: var(--ink);
+  color: white;
+}
+
+.services .section-heading p {
+  color: #a2a399;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #ffffff26;
+  border-right: 1px solid #ffffff26;
+}
+
+.service {
+  min-height: 240px;
+  padding: 29px;
+  border-left: 1px solid #ffffff26;
+  border-bottom: 1px solid #ffffff26;
+  transition: .3s;
+}
+
+.service:hover {
+  background: #222a4b;
+}
+
+.service-index {
+  color: var(--lime);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  direction: ltr;
+}
+
+.service-icon {
+  margin-top: 28px;
+  font-size: 29px;
+  color: #a6b8ff;
+}
+
+.service h3 {
+  font-size: 17px;
+  margin-top: 13px;
+}
+
+.service p {
+  color: #a5a69e;
+  font-size: 12px;
+  line-height: 2.2;
+  margin-top: 12px;
+}
+
+/* EXPERTISE */
+
+.expertise {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.expertise-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.expertise-item strong {
+  font-size: 14px;
+}
+
+.expertise-item span {
+  direction: ltr;
+  font-family: Arial, sans-serif;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 /* CONTACT */
 
-.contact-box {
-  text-align:center;
-  border:1px solid #42a5ff35;
-  background:
-  radial-gradient(ellipse at top,#193c7030,transparent 70%),
-  #10121e;
-  border-radius:28px;
-  padding:55px 20px;
+.contact {
+  background: var(--blue);
+  color: white;
+  padding: 90px 0;
 }
 
-.contact-box h2 {
-  font-size:30px;
-  margin-bottom:14px;
+.contact-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
 }
 
-.contact-box p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:2.3;
-  margin-bottom:25px;
+.contact h2 {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 900;
+  line-height: 1.6;
 }
 
-.socials {
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.contact p {
+  color: #dce2ff;
+  font-size: 13px;
+  line-height: 2.4;
+  margin-top: 12px;
 }
 
-.socials a {
-  border:1px solid #ffffff20;
-  padding:12px 20px;
-  border-radius:12px;
-  font-size:12px;
-  transition:.3s;
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  min-width: 210px;
+  gap: 11px;
 }
 
-.socials a:hover {
-  background:#268eff24;
-  border-color:var(--blue);
-  transform:translateY(-4px);
+.contact-links a {
+  background: white;
+  color: var(--ink);
+  padding: 16px 20px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .25s;
 }
 
-footer {
-  text-align:center;
-  padding:30px 10px;
-  border-top:1px solid #ffffff10;
-  color:#777d91;
-  font-size:11px;
+.contact-links a:hover {
+  background: var(--lime);
+  transform: translateX(-5px);
+}
+
+/* FOOTER */
+
+.footer {
+  background: var(--ink);
+  color: white;
+  padding: 35px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer .brand {
+  font-size: 25px;
+}
+
+.footer small {
+  color: #989a90;
+  font-size: 11px;
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* MOBILE */
 
-@media(max-width:750px) {
-  .navlinks {display:none;}
-  .hero {
-    grid-template-columns:1fr;
-    text-align:center;
-    gap:45px;
-    padding-top:65px;
-    min-height:auto;
+@media(max-width:800px) {
+
+  .container {
+    width: 88%;
   }
-  .hero p {margin:20px auto 28px;}
-  .buttons {justify-content:center;}
-  .profile-wrap {max-width:310px;}
-  .profile-label {right:-8px;}
-  .skills {grid-template-columns:1fr;}
-  .section-title h2 {font-size:26px;}
-  section:not(.hero) {padding:65px 0;}
-  .about-card {padding:24px;font-size:13px;}
-  .contact-box h2 {font-size:24px;}
+
+  .nav {
+    height: 68px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    right: 0;
+    left: 0;
+    padding: 23px 6%;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-action {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  .hero {
+    padding-top: 50px;
+    padding-bottom: 65px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 43px;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .visual {
+    order: 0;
+    width: min(85%, 370px);
+  }
+
+  .hero h1 {
+    font-size: 39px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 .english {
+    font-size: clamp(65px, 17vw, 91px);
+    letter-spacing: -5px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .photo-index {
+    left: -12px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .section-heading p {
+    max-width: 100%;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .about-stamp {
+    min-height: 170px;
+    font-size: 54px;
+  }
+
+  .about-content h3 {
+    font-size: 20px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service {
+    min-height: 195px;
+    padding: 23px;
+  }
+
+  .service-icon {
+    margin-top: 17px;
+  }
+
+  .expertise {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    padding: 65px 0;
+  }
+
+  .contact-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-links {
+    width: 100%;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after {
-    animation:none!important;
-    scroll-behavior:auto!important;
-    transition:none!important;
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>
@@ -398,151 +720,349 @@ footer {
 
 <body>
 
-<nav>
-  <a class="logo" href="#home">ABBAS.</a>
+<header class="header">
+  <div class="container nav">
 
-  <div class="navlinks">
-    <a href="#home">خانه</a>
-    <a href="#about">درباره من</a>
-    <a href="#skills">تخصص‌ها</a>
-    <a href="#contact">ارتباط</a>
+    <a href="#home" class="brand">ABBAS<span>.</span></a>
+
+    <button class="menu-toggle"
+      id="menuToggle"
+      aria-label="باز کردن منو"
+      aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">خانه</a>
+      <a href="#about">درباره من</a>
+      <a href="#services">خدمات</a>
+      <a href="#expertise">تخصص‌ها</a>
+      <a href="#contact">ارتباط</a>
+    </nav>
+
+    <a class="nav-action" href="#contact">
+      ارتباط با من <span>↗</span>
+    </a>
+
   </div>
+</header>
 
-  <a class="nav-cta" href="#contact">ارتباط با من ↗</a>
-</nav>
+<main>
 
-<main class="container">
+<!-- HERO -->
 
-<section class="hero" id="home">
+<section class="hero container" id="home">
 
-  <div>
-    <div class="tag">
-      <span class="dot"></span>
-      طراح و توسعه‌دهنده وب
+  <div class="hero-grid">
+
+    <div class="hero-copy reveal">
+
+      <div class="eyebrow">
+        طراح و توسعه‌دهنده وب
+      </div>
+
+      <h1>
+        سلام، من عباس هستم.
+        <span class="english">ABBAS</span>
+        <span style="color:var(--blue)">فراتر از طراحی.</span>
+      </h1>
+
+      <p class="hero-description">
+        من به خلق تجربه‌های دیجیتال فکر می‌کنم؛
+        جایی که طراحی دقیق، تکنولوژی و خلاقیت
+        در کنار هم قرار می‌گیرند تا چیزی متفاوت
+        ساخته شود.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="button button-dark">
+          ارتباط و همکاری ↗
+        </a>
+
+        <a href="#about" class="button button-light">
+          داستان من
+        </a>
+      </div>
+
     </div>
 
-    <h1>
-      من عباس هستم؛<br>
-      خالق دنیای<br>
-      <span class="gradient">دیجیتال متفاوت.</span>
-    </h1>
+    <div class="visual reveal">
 
-    <p>
-      به دنیای من خوش آمدید.
-      من به طراحی و ساخت تجربه‌های دیجیتال مدرن،
-      خلق ایده‌های خلاقانه و تبدیل چشم‌اندازها
-      به واقعیت علاقه‌مندم.
-    </p>
+      <div class="photo">
+        <img src="profile.png"
+          alt="عباس، طراح و توسعه‌دهنده وب"
+          fetchpriority="high">
 
-    <div class="buttons">
-      <a class="btn primary" href="#contact">
-        شروع همکاری ↗
-      </a>
-      <a class="btn secondary" href="#about">
-        بیشتر درباره من
-      </a>
-    </div>
-  </div>
+        <div class="photo-caption">
+          ABBAS — DIGITAL CREATOR
+        </div>
+      </div>
 
-  <div class="profile-wrap">
-    <div class="profile-glow"></div>
+      <div class="photo-index">01 / PROFILE</div>
 
-    <div class="profile-frame">
-      <img src="profile.png"
-           alt="عباس، طراح و توسعه‌دهنده وب">
     </div>
 
-    <div class="profile-label">
-      ✦ عباس | Digital Creator
-    </div>
   </div>
 
 </section>
 
-<section id="about">
-  <div class="section-title">
-    <small>ABOUT ME</small>
-    <h2>درباره من</h2>
-    <p>نگاهی به مسیر و دنیای دیجیتال من</p>
+<!-- BRAND STRIP -->
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>DESIGN · DEVELOPMENT · CREATIVITY · DIGITAL EXPERIENCE · </span>
+    <span>DESIGN · DEVELOPMENT · CREATIVITY · DIGITAL EXPERIENCE · </span>
   </div>
+</div>
 
-  <div class="about-card">
-    من <strong>عباس</strong> هستم؛ طراح و توسعه‌دهنده وب.
-    به ساخت وب‌سایت‌هایی علاقه دارم که فقط زیبا نباشند،
-    بلکه تجربه‌ای حرفه‌ای، سریع و ماندگار ایجاد کنند.
-    <br>
-    تمرکز من روی خلاقیت، جزئیات، تکنولوژی و
-    ساخت هویت دیجیتال منحصربه‌فرد است.
-  </div>
-</section>
+<!-- ABOUT -->
 
-<section id="skills">
-  <div class="section-title">
-    <small>MY EXPERTISE</small>
-    <h2>حوزه فعالیت من</h2>
-    <p>ترکیب تکنولوژی، خلاقیت و طراحی</p>
-  </div>
+<section class="section container" id="about">
 
-  <div class="skills">
-
-    <div class="skill">
-      <div class="icon">⌘</div>
-      <h3>طراحی وب</h3>
-      <p>طراحی رابط‌های مدرن، واکنش‌گرا و کاربرپسند.</p>
-    </div>
-
-    <div class="skill">
-      <div class="icon">◈</div>
-      <h3>توسعه وب</h3>
-      <p>تبدیل ایده‌ها به تجربه‌های دیجیتال کاربردی.</p>
-    </div>
-
-    <div class="skill">
-      <div class="icon">✧</div>
-      <h3>هویت دیجیتال</h3>
-      <p>خلق ظاهر حرفه‌ای و متفاوت برای برندهای شخصی.</p>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-box">
-    <div class="section-title">
-      <small>LET'S CONNECT</small>
-      <h2>بیایید ارتباط بسازیم.</h2>
+  <div class="section-heading reveal">
+    <div>
+      <div class="section-number">01 / ABOUT</div>
+      <h2>درباره من</h2>
     </div>
 
     <p>
-      برای همکاری، پروژه‌های جدید یا ارتباط مستقیم
-      می‌توانید از راه‌های زیر با من در تماس باشید.
+      یک نگاه به طرز فکر، مسیر و دنیای دیجیتال من.
     </p>
+  </div>
 
-    <div class="socials">
+  <div class="about-layout">
+
+    <div class="about-stamp reveal">
+      A.
+    </div>
+
+    <div class="about-content reveal">
+
+      <h3>
+        من به ساختن چیزهایی علاقه دارم
+        که فقط دیده نمی‌شوند؛
+        بلکه در ذهن می‌مانند.
+      </h3>
+
+      <p>
+        عباس هستم؛ طراح و توسعه‌دهنده وب.
+        برای من طراحی تنها انتخاب رنگ و چیدمان نیست؛
+        بلکه ساخت یک تجربه منسجم از اولین نگاه
+        تا آخرین تعامل کاربر است.
+        <br>
+        به جزئیات اهمیت می‌دهم و همیشه به دنبال
+        یادگیری تکنولوژی‌های جدید و ارتقای کیفیت
+        کارهایم هستم.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="section services" id="services">
+
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <div>
+        <div class="section-number">02 / WHAT I DO</div>
+        <h2>حوزه فعالیت</h2>
+      </div>
+
+      <p>
+        تمرکز بر ساخت تجربه‌های کاربردی و متفاوت.
+      </p>
+    </div>
+
+    <div class="service-grid">
+
+      <article class="service reveal">
+        <div class="service-index">01</div>
+        <div class="service-icon">◈</div>
+        <h3>طراحی رابط کاربری</h3>
+        <p>
+          طراحی رابط‌های مدرن با توجه به
+          تجربه کاربر، جزئیات و هویت بصری.
+        </p>
+      </article>
+
+      <article class="service reveal">
+        <div class="service-index">02</div>
+        <div class="service-icon">⌘</div>
+        <h3>توسعه وب</h3>
+        <p>
+          پیاده‌سازی ایده‌ها با ساختار
+          استاندارد، کدنویسی تمیز و واکنش‌گرا.
+        </p>
+      </article>
+
+      <article class="service reveal">
+        <div class="service-index">03</div>
+        <div class="service-icon">✳</div>
+        <h3>هویت دیجیتال</h3>
+        <p>
+          ساخت یک حضور دیجیتال منسجم
+          و حرفه‌ای برای برند شخصی.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- EXPERTISE -->
+
+<section class="section container" id="expertise">
+
+  <div class="section-heading reveal">
+    <div>
+      <div class="section-number">03 / APPROACH</div>
+      <h2>نگاه من به کیفیت</h2>
+    </div>
+
+    <p>
+      استانداردهایی که در ساخت پروژه‌ها
+      به آن‌ها اهمیت می‌دهم.
+    </p>
+  </div>
+
+  <div class="expertise">
+
+    <div class="expertise-item reveal">
+      <strong>طراحی واکنش‌گرا</strong>
+      <span>RESPONSIVE</span>
+    </div>
+
+    <div class="expertise-item reveal">
+      <strong>تجربه کاربری</strong>
+      <span>UX / UI</span>
+    </div>
+
+    <div class="expertise-item reveal">
+      <strong>کدنویسی استاندارد</strong>
+      <span>CLEAN CODE</span>
+    </div>
+
+    <div class="expertise-item reveal">
+      <strong>عملکرد و سرعت</strong>
+      <span>PERFORMANCE</span>
+    </div>
+
+    <div class="expertise-item reveal">
+      <strong>هویت بصری</strong>
+      <span>BRANDING</span>
+    </div>
+
+    <div class="expertise-item reveal">
+      <strong>توسعه مستمر</strong>
+      <span>EVOLUTION</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+  <div class="container contact-inner">
+
+    <div class="reveal">
+
+      <div class="section-number" style="color:var(--lime)">
+        04 / GET IN TOUCH
+      </div>
+
+      <h2>
+        بیایید چیزی<br>
+        متفاوت بسازیم.
+      </h2>
+
+      <p>
+        برای ارتباط، همکاری و گفتگو
+        از راه‌های زیر با من در تماس باشید.
+      </p>
+
+    </div>
+
+    <div class="contact-links reveal">
+
       <a href="https://instagram.com/oxabbas_neural"
-         target="_blank" rel="noopener">
-        Instagram ↗
-      </a>
-
-      <a href="tel:+989050096685">
-        تماس مستقیم ☎
+         target="_blank" rel="noopener noreferrer">
+        Instagram <span>↗</span>
       </a>
 
       <a href="https://wa.me/989050096685"
-         target="_blank" rel="noopener">
-        WhatsApp ↗
+         target="_blank" rel="noopener noreferrer">
+        WhatsApp <span>↗</span>
       </a>
+
+      <a href="tel:+989050096685">
+        تماس مستقیم <span>↗</span>
+      </a>
+
     </div>
+
   </div>
+
 </section>
 
 </main>
 
-<footer>
-  © 2026 ABBAS — All Rights Reserved.
-  <br><br>
-  Designed with passion & creativity.
+<!-- FOOTER -->
+
+<footer class="footer">
+  <div class="container footer-inner">
+
+    <a href="#home" class="brand">ABBAS<span>.</span></a>
+
+    <small>
+      © 2026 ABBAS — تمام حقوق محفوظ است.
+    </small>
+
+    <small>
+      Designed with intention.
+    </small>
+
+  </div>
 </footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', isOpen);
+  menuToggle.textContent = isOpen ? '×' : '☰';
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(element => {
+  observer.observe(element);
+});
+</script>
 
 </body>
 </html>
