@@ -4,10 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080b16">
+<meta name="theme-color" content="#080b18">
 
-<title>عباس | Web Developer</title>
-<meta name="description" content="وب‌سایت شخصی عباس، طراح وب و توسعه‌دهنده سایت">
+<title>عباس | طراح و توسعه‌دهنده وب</title>
+
+<meta name="description" content="وب‌سایت شخصی عباس، طراح وب و توسعه‌دهنده سایت‌های مدرن.">
+<meta name="author" content="Abbas">
+<meta property="og:title" content="عباس | Web Developer">
+<meta property="og:description" content="طراحی و توسعه تجربه‌های دیجیتال مدرن">
+<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +20,16 @@
 
 <style>
 :root {
-    --bg: #080b16;
-    --surface: #101629;
-    --surface2: #131d34;
+    --bg: #080b18;
+    --bg2: #0d1325;
+    --card: #111a30;
     --blue: #168cff;
-    --cyan: #27d9ff;
-    --purple: #b84dff;
-    --white: #f5f7ff;
-    --muted: #98a8c4;
-    --border: rgba(116,163,255,.14);
+    --cyan: #28d9ff;
+    --purple: #bb55ff;
+    --text: #f4f7ff;
+    --muted: #9baac4;
+    --border: rgba(111,165,255,.15);
+    --gradient: linear-gradient(110deg,#25d9ff,#168cff,#bd58ff);
 }
 
 * {
@@ -39,14 +45,18 @@ html {
 
 body {
     background: var(--bg);
-    color: var(--white);
-    font-family: 'Vazirmatn', sans-serif;
+    color: var(--text);
+    font-family: 'Vazirmatn',Tahoma,sans-serif;
     overflow-x: hidden;
 }
 
+body, button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 button {
@@ -54,34 +64,62 @@ button {
 }
 
 .container {
-    width: min(1120px, 90%);
+    width: min(1120px,90%);
     margin: auto;
+}
+
+::selection {
+    background: #168cff;
+    color: white;
 }
 
 /* BACKGROUND */
 
-.background-glow {
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 5% 15%,rgba(0,112,255,.18),transparent 35%),
+        radial-gradient(ellipse at 95% 35%,rgba(183,49,255,.13),transparent 36%),
+        radial-gradient(ellipse at 50% 100%,rgba(0,190,255,.09),transparent 40%);
+}
+
+.grid-background {
     position: fixed;
     inset: 0;
     z-index: -2;
     pointer-events: none;
-    background:
-    radial-gradient(ellipse at 10% 15%,rgba(0,112,255,.15),transparent 35%),
-    radial-gradient(ellipse at 90% 45%,rgba(176,47,255,.11),transparent 35%),
-    radial-gradient(ellipse at 50% 100%,rgba(0,191,255,.08),transparent 40%);
-}
-
-.grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: .16;
+    opacity: .14;
     background-image:
-    linear-gradient(rgba(100,150,255,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(100,150,255,.07) 1px,transparent 1px);
+        linear-gradient(rgba(100,150,255,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(100,150,255,.08) 1px,transparent 1px);
     background-size: 55px 55px;
     mask-image: linear-gradient(to bottom,black,transparent 85%);
+}
+
+.orb {
+    position: fixed;
+    z-index: -1;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .15;
+    pointer-events: none;
+}
+
+.orb-one {
+    background: #087dff;
+    top: 15%;
+    left: -150px;
+}
+
+.orb-two {
+    background: #c12cff;
+    bottom: 10%;
+    right: -150px;
 }
 
 /* HEADER */
@@ -89,22 +127,21 @@ button {
 header {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(8,11,22,.82);
+    z-index: 1000;
+    background: rgba(8,11,24,.84);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
 }
 
 .navbar {
-    min-height: 76px;
+    height: 76px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
 }
 
 .logo {
-    font-size: 23px;
+    font-size: 25px;
     font-weight: 900;
     letter-spacing: -1px;
 }
@@ -125,45 +162,46 @@ header {
     transition: .25s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--cyan);
 }
 
-.nav-contact {
+.nav-action {
     padding: 10px 19px;
+    border: 1px solid rgba(40,217,255,.35);
     border-radius: 10px;
-    border: 1px solid rgba(39,217,255,.4);
     color: var(--cyan);
-    font-size: 13px;
+    font-size: 12px;
     transition: .3s;
 }
 
-.nav-contact:hover {
+.nav-action:hover {
     background: var(--blue);
     color: white;
-    box-shadow: 0 0 20px rgba(22,140,255,.3);
+    box-shadow: 0 0 25px #168cff55;
 }
 
 .menu-btn {
     display: none;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: var(--card);
     color: white;
-    border-radius: 9px;
-    padding: 8px 12px;
-    font-size: 21px;
+    padding: 8px 13px;
+    border-radius: 10px;
+    font-size: 22px;
     cursor: pointer;
 }
 
 /* HERO */
 
 .hero {
-    min-height: 680px;
+    min-height: 690px;
     display: grid;
     grid-template-columns: 1.15fr .85fr;
     align-items: center;
     gap: 65px;
-    padding: 85px 0;
+    padding: 80px 0;
 }
 
 .eyebrow {
@@ -172,56 +210,57 @@ header {
     gap: 10px;
     padding: 9px 15px;
     background: rgba(22,140,255,.09);
-    border: 1px solid rgba(39,217,255,.2);
+    border: 1px solid rgba(40,217,255,.2);
     border-radius: 30px;
-    color: #8eeaff;
+    color: #9beaff;
     font-size: 12px;
     margin-bottom: 25px;
 }
 
 .online-dot {
-    width: 7px;
-    height: 7px;
-    background: #20e6b1;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    box-shadow: 0 0 10px #20e6b1;
+    background: #20e6b1;
+    box-shadow: 0 0 12px #20e6b1;
 }
 
 .hero h1 {
-    font-size: clamp(38px,6vw,65px);
-    line-height: 1.5;
+    font-size: clamp(39px,5.5vw,65px);
+    line-height: 1.55;
     font-weight: 900;
     letter-spacing: -2px;
 }
 
 .gradient-text {
-    background: linear-gradient(90deg,#29d8ff,#398cff,#bd62ff);
+    background: var(--gradient);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 
 .hero-description {
-    margin-top: 20px;
-    max-width: 550px;
+    max-width: 570px;
     color: var(--muted);
-    font-size: 15px;
-    line-height: 2.5;
+    font-size: 14px;
+    line-height: 2.7;
+    margin-top: 18px;
 }
 
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 13px;
-    margin-top: 32px;
+    margin-top: 30px;
 }
 
 .btn {
+    min-height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    padding: 14px 23px;
+    padding: 12px 22px;
     border-radius: 11px;
     font-size: 13px;
     font-weight: 700;
@@ -231,18 +270,18 @@ header {
 .btn-primary {
     color: white;
     background: linear-gradient(100deg,#087cf5,#16b9ed);
-    box-shadow: 0 8px 30px rgba(0,136,255,.2);
+    box-shadow: 0 8px 28px #008cff30;
 }
 
 .btn-primary:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 35px rgba(0,136,255,.4);
+    box-shadow: 0 12px 35px #008cff55;
 }
 
 .btn-secondary {
     border: 1px solid var(--border);
-    background: var(--surface);
     color: white;
+    background: rgba(17,26,48,.8);
 }
 
 .btn-secondary:hover {
@@ -250,35 +289,35 @@ header {
     transform: translateY(-4px);
 }
 
-/* PROFILE IMAGE */
+/* PROFILE */
 
 .hero-visual {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .image-glow {
     position: absolute;
-    width: 340px;
-    height: 340px;
-    border-radius: 50%;
+    width: 330px;
+    height: 330px;
     background: linear-gradient(135deg,#087dff,#bb38ff);
+    border-radius: 50%;
     filter: blur(100px);
-    opacity: .25;
+    opacity: .3;
 }
 
 .profile-frame {
     position: relative;
-    width: min(100%,350px);
+    width: min(100%,360px);
     aspect-ratio: 4 / 5;
     padding: 3px;
-    border-radius: 25px;
-    background: linear-gradient(145deg,#27d9ff,#168cff 45%,#b84dff);
+    border-radius: 27px;
+    background: linear-gradient(140deg,#27d9ff,#168cff 45%,#bd55ff);
     box-shadow:
-    0 0 45px rgba(22,140,255,.2),
-    0 0 70px rgba(184,77,255,.1);
+        0 0 45px #168cff30,
+        0 0 70px #bb55ff15;
     animation: float 5s ease-in-out infinite;
 }
 
@@ -286,8 +325,8 @@ header {
     content: "";
     position: absolute;
     inset: -13px;
-    border: 1px solid rgba(39,217,255,.18);
-    border-radius: 32px;
+    border: 1px solid rgba(39,217,255,.22);
+    border-radius: 35px;
     z-index: -1;
 }
 
@@ -297,18 +336,44 @@ header {
     display: block;
     object-fit: cover;
     object-position: center 25%;
-    border-radius: 23px;
-    border: 4px solid #0c1223;
+    border-radius: 24px;
+    border: 4px solid #0b1121;
+}
+
+/* Image fallback */
+
+.image-fallback {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 4px solid #0b1121;
+    background: linear-gradient(145deg,#102a50,#21133d);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+}
+
+.image-fallback strong {
+    font-size: 50px;
+    color: var(--cyan);
+}
+
+.image-fallback small {
+    color: var(--muted);
+    font-size: 11px;
 }
 
 .profile-tag {
     position: absolute;
-    bottom: 22px;
+    bottom: 23px;
     right: -28px;
     padding: 12px 17px;
     border: 1px solid rgba(39,217,255,.25);
     border-radius: 12px;
-    background: rgba(12,21,42,.94);
+    background: rgba(12,21,42,.95);
     backdrop-filter: blur(15px);
     color: #c9f4ff;
     font-size: 12px;
@@ -317,37 +382,36 @@ header {
 
 @keyframes float {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-11px); }
 }
 
-/* GENERAL SECTIONS */
+/* SECTION */
 
-section.content-section {
-    padding: 85px 0;
+.section {
+    padding: 90px 0;
 }
 
 .section-heading {
-    margin-bottom: 40px;
+    margin-bottom: 38px;
 }
 
 .section-heading small {
-    display: block;
     color: var(--cyan);
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
 }
 
 .section-heading h2 {
-    font-size: 30px;
+    font-size: clamp(24px,4vw,34px);
     font-weight: 800;
+    margin-top: 10px;
 }
 
 .section-heading p {
-    margin-top: 12px;
     color: var(--muted);
     font-size: 13px;
-    line-height: 2;
+    line-height: 2.3;
+    margin-top: 12px;
 }
 
 /* ABOUT */
@@ -355,17 +419,18 @@ section.content-section {
 .about-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
     gap: 35px;
     padding: 35px;
+    background: linear-gradient(135deg,#111c33,#0d1326);
     border: 1px solid var(--border);
     border-radius: 22px;
-    background: linear-gradient(135deg,#101a30,#0c1121);
 }
 
 .about-text {
     color: var(--muted);
     font-size: 14px;
-    line-height: 2.6;
+    line-height: 2.7;
 }
 
 .about-info {
@@ -379,13 +444,19 @@ section.content-section {
     background: rgba(22,140,255,.07);
     border: 1px solid var(--border);
     border-radius: 13px;
+    transition: .3s;
+}
+
+.info-box:hover {
+    border-color: rgba(40,217,255,.4);
+    transform: translateY(-3px);
 }
 
 .info-box span {
     display: block;
     color: var(--muted);
     font-size: 11px;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 }
 
 .info-box strong {
@@ -398,32 +469,32 @@ section.content-section {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    gap: 15px;
+    gap: 16px;
 }
 
 .skill {
-    padding: 25px 15px;
+    padding: 27px 15px;
     text-align: center;
-    background: var(--surface);
+    background: linear-gradient(145deg,#111b32,#0d1427);
     border: 1px solid var(--border);
     border-radius: 17px;
     transition: .3s;
 }
 
 .skill:hover {
-    transform: translateY(-6px);
-    border-color: rgba(39,217,255,.55);
-    background: var(--surface2);
+    transform: translateY(-7px);
+    border-color: rgba(40,217,255,.55);
+    box-shadow: 0 12px 35px #008cff12;
 }
 
 .skill-icon {
-    font-size: 29px;
-    margin-bottom: 12px;
+    font-size: 31px;
+    margin-bottom: 13px;
 }
 
 .skill h3 {
-    font-size: 13px;
-    margin-bottom: 7px;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 
 .skill p {
@@ -440,42 +511,56 @@ section.content-section {
 }
 
 .project {
-    padding: 25px;
-    background: linear-gradient(145deg,#121d35,#0d1427);
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    background: linear-gradient(145deg,#131e38,#0c1428);
     border: 1px solid var(--border);
-    border-radius: 18px;
+    border-radius: 19px;
     transition: .3s;
 }
 
+.project::after {
+    content: "";
+    position: absolute;
+    top: -65px;
+    left: -65px;
+    width: 130px;
+    height: 130px;
+    background: #168cff;
+    filter: blur(90px);
+    opacity: .2;
+}
+
 .project:hover {
-    transform: translateY(-5px);
-    border-color: rgba(39,217,255,.5);
+    transform: translateY(-6px);
+    border-color: rgba(40,217,255,.5);
 }
 
 .project-number {
     color: var(--cyan);
-    font-size: 12px;
-    margin-bottom: 20px;
+    font-size: 11px;
+    margin-bottom: 23px;
 }
 
 .project h3 {
     font-size: 17px;
-    margin-bottom: 12px;
+    margin-bottom: 13px;
 }
 
 .project p {
     color: var(--muted);
     font-size: 12px;
-    line-height: 2.2;
+    line-height: 2.4;
 }
 
 .project-label {
     display: inline-block;
-    margin-top: 18px;
-    padding: 6px 11px;
+    margin-top: 19px;
+    padding: 7px 12px;
     border-radius: 7px;
     background: rgba(22,140,255,.12);
-    color: #7fdfff;
+    color: #85ddff;
     font-size: 10px;
 }
 
@@ -483,38 +568,45 @@ section.content-section {
 
 .contact-card {
     text-align: center;
-    padding: 55px 25px;
+    padding: 60px 25px;
     border-radius: 23px;
-    border: 1px solid rgba(39,217,255,.2);
+    border: 1px solid rgba(39,217,255,.22);
     background:
-    radial-gradient(circle at 50% 0%,rgba(22,140,255,.17),transparent 55%),
-    #101629;
+        radial-gradient(circle at 50% 0%,rgba(22,140,255,.19),transparent 60%),
+        #101629;
 }
 
 .contact-card h2 {
-    font-size: 30px;
-    margin-bottom: 15px;
+    font-size: clamp(24px,4vw,34px);
 }
 
 .contact-card p {
+    max-width: 550px;
+    margin: 16px auto 27px;
     color: var(--muted);
     font-size: 13px;
-    line-height: 2.3;
-    margin-bottom: 25px;
+    line-height: 2.5;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
 
 /* FOOTER */
 
 footer {
-    padding: 28px 0;
+    padding: 27px 0;
     border-top: 1px solid var(--border);
-    margin-top: 70px;
+    margin-top: 65px;
 }
 
 .footer-inner {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     gap: 15px;
 }
 
@@ -527,14 +619,28 @@ footer strong {
     color: var(--cyan);
 }
 
-/* MOBILE MENU */
+/* SCROLL REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
 
 @media(max-width:850px) {
+
     .hero {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 60px;
-        padding: 65px 0;
+        padding: 70px 0;
     }
 
     .hero-description {
@@ -561,7 +667,7 @@ footer strong {
 @media(max-width:650px) {
 
     .navbar {
-        min-height: 68px;
+        height: 68px;
     }
 
     .menu-btn {
@@ -574,36 +680,41 @@ footer strong {
         top: 68px;
         right: 5%;
         left: 5%;
-        padding: 18px;
+        padding: 14px;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
+        background: #101629;
         border: 1px solid var(--border);
         border-radius: 15px;
-        background: #101629;
         box-shadow: 0 15px 40px #0008;
     }
 
-    .nav-links.active {
+    .nav-links.open {
         display: flex;
     }
 
     .nav-links a {
-        padding: 13px;
+        padding: 14px;
         border-bottom: 1px solid var(--border);
     }
 
-    .nav-contact {
+    .nav-links a:last-child {
+        border: none;
+    }
+
+    .nav-action {
         display: none;
     }
 
     .hero {
         min-height: auto;
-        padding: 55px 0 75px;
+        padding: 58px 0 75px;
     }
 
     .hero h1 {
         font-size: 39px;
+        letter-spacing: -1px;
     }
 
     .hero-description {
@@ -611,35 +722,27 @@ footer strong {
     }
 
     .profile-frame {
-        width: min(78%,290px);
+        width: min(78%,300px);
     }
 
     .profile-tag {
         right: -10px;
     }
 
-    section.content-section {
-        padding: 60px 0;
-    }
-
-    .section-heading h2 {
-        font-size: 25px;
+    .section {
+        padding: 65px 0;
     }
 
     .about-card {
         padding: 23px;
     }
 
-    .about-info {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .projects-grid {
         grid-template-columns: 1fr;
     }
 
-    .contact-card h2 {
-        font-size: 24px;
+    .contact-card {
+        padding: 45px 20px;
     }
 
     .footer-inner {
@@ -648,10 +751,7 @@ footer strong {
     }
 }
 
-@media(max-width:360px) {
-    .skills-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+@media(max-width:370px) {
 
     .hero h1 {
         font-size: 33px;
@@ -660,6 +760,29 @@ footer strong {
     .hero-buttons .btn {
         width: 100%;
     }
+
+    .about-info {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        gap: 10px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 </style>
@@ -667,8 +790,10 @@ footer strong {
 
 <body>
 
-<div class="background-glow"></div>
-<div class="grid-bg"></div>
+<div class="background"></div>
+<div class="grid-background"></div>
+<div class="orb orb-one"></div>
+<div class="orb orb-two"></div>
 
 <!-- HEADER -->
 
@@ -687,11 +812,13 @@ footer strong {
         <a href="#contact">ارتباط</a>
     </nav>
 
-    <a href="#contact" class="nav-contact">
-        ارتباط با من ↗
+    <a href="#contact" class="nav-action">
+        همکاری با من ↗
     </a>
 
-    <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو">
+    <button class="menu-btn" id="menuBtn"
+        aria-label="باز کردن منو"
+        aria-expanded="false">
         ☰
     </button>
 
@@ -706,11 +833,11 @@ footer strong {
 
 <section class="hero" id="home">
 
-    <div class="hero-text">
+    <div class="hero-text reveal">
 
         <div class="eyebrow">
             <span class="online-dot"></span>
-            خوش اومدی به وب‌سایت شخصی من
+            به وب‌سایت شخصی من خوش آمدی
         </div>
 
         <h1>
@@ -725,7 +852,8 @@ footer strong {
             به دنیای دیجیتال من خوش اومدی.
             من به طراحی و توسعه وب‌سایت‌های مدرن،
             زیبا و کاربردی علاقه دارم.
-            هدفم ساخت تجربه‌های دیجیتالی متفاوت و حرفه‌ایه.
+            هدفم تبدیل ایده‌ها به تجربه‌های دیجیتال
+            جذاب و حرفه‌ایه.
         </p>
 
         <div class="hero-buttons">
@@ -742,14 +870,26 @@ footer strong {
 
     </div>
 
-    <div class="hero-visual">
+    <div class="hero-visual reveal">
 
         <div class="image-glow"></div>
 
         <div class="profile-frame">
 
-            <!-- عکس پروفایل خودت -->
-            <img src="./profile.jpg" alt="عباس">
+            <!-- IMPORTANT: GitHub filename is profile.png -->
+
+            <img
+                id="profileImage"
+                src="./profile.png"
+                alt="عکس پروفایل عباس"
+                fetchpriority="high"
+            >
+
+            <div class="image-fallback" id="imageFallback">
+                <strong>A</strong>
+                <small>PROFILE IMAGE NOT FOUND</small>
+                <small>بررسی نام profile.png در GitHub</small>
+            </div>
 
         </div>
 
@@ -765,23 +905,25 @@ footer strong {
 
 <!-- ABOUT -->
 
-<section class="content-section" id="about">
+<section class="section" id="about">
 <div class="container">
 
-    <div class="section-heading">
+    <div class="section-heading reveal">
         <small>ABOUT ME / درباره من</small>
-        <h2>کمی بیشتر با من آشنا شو</h2>
-        <p>نگاهی کوتاه به فعالیت‌ها و دنیای کاری من.</p>
+        <h2>بیشتر با من آشنا شو</h2>
+        <p>
+            نگاهی کوتاه به دنیای کاری و علاقه‌مندی‌های من.
+        </p>
     </div>
 
-    <div class="about-card">
+    <div class="about-card reveal">
 
         <p class="about-text">
-            من عباس هستم و در زمینه طراحی و توسعه وب فعالیت می‌کنم.
-            به ساخت وب‌سایت‌هایی با ظاهر حرفه‌ای،
-            رابط کاربری مناسب و تجربه کاربری خوب علاقه دارم.
-            همیشه سعی می‌کنم مهارت‌هام رو توسعه بدم
-            و ایده‌های جدید رو به پروژه‌های واقعی تبدیل کنم.
+            من عباس هستم و به دنیای طراحی و توسعه وب علاقه دارم.
+            تمرکزم روی ساخت وب‌سایت‌هایی با ظاهر مدرن،
+            رابط کاربری جذاب و تجربه کاربری مناسب است.
+            همیشه به دنبال یادگیری تکنولوژی‌های جدید
+            و تبدیل ایده‌های خلاقانه به پروژه‌های واقعی هستم.
         </p>
 
         <div class="about-info">
@@ -793,17 +935,17 @@ footer strong {
 
             <div class="info-box">
                 <span>حوزه فعالیت</span>
-                <strong>طراحی وب</strong>
+                <strong>طراحی و توسعه وب</strong>
             </div>
 
             <div class="info-box">
                 <span>علاقه‌مندی</span>
-                <strong>تکنولوژی</strong>
+                <strong>تکنولوژی و برنامه‌نویسی</strong>
             </div>
 
             <div class="info-box">
                 <span>هدف</span>
-                <strong>خلق ایده‌های دیجیتال</strong>
+                <strong>ساخت پروژه‌های حرفه‌ای</strong>
             </div>
 
         </div>
@@ -815,36 +957,38 @@ footer strong {
 
 <!-- SKILLS -->
 
-<section class="content-section" id="skills">
+<section class="section" id="skills">
 <div class="container">
 
-    <div class="section-heading">
+    <div class="section-heading reveal">
         <small>MY SKILLS / مهارت‌ها</small>
-        <h2>تکنولوژی‌هایی که باهاشون کار می‌کنم</h2>
-        <p>مهارت‌ها و ابزارهای مورد علاقه من در دنیای وب.</p>
+        <h2>ابزارهای دنیای وب</h2>
+        <p>
+            تکنولوژی‌ها و ابزارهایی که در مسیر توسعه وب با آن‌ها کار می‌کنم.
+        </p>
     </div>
 
     <div class="skills-grid">
 
-        <div class="skill">
+        <div class="skill reveal">
             <div class="skill-icon">🌐</div>
             <h3>HTML</h3>
             <p>ساختار صفحات وب</p>
         </div>
 
-        <div class="skill">
+        <div class="skill reveal">
             <div class="skill-icon">🎨</div>
             <h3>CSS</h3>
             <p>طراحی رابط کاربری</p>
         </div>
 
-        <div class="skill">
+        <div class="skill reveal">
             <div class="skill-icon">⚡</div>
             <h3>JavaScript</h3>
-            <p>تعامل و پویایی وب</p>
+            <p>تعامل و پویایی سایت</p>
         </div>
 
-        <div class="skill">
+        <div class="skill reveal">
             <div class="skill-icon">🖥️</div>
             <h3>WordPress</h3>
             <p>مدیریت و توسعه سایت</p>
@@ -857,35 +1001,60 @@ footer strong {
 
 <!-- PROJECTS -->
 
-<section class="content-section" id="projects">
+<section class="section" id="projects">
 <div class="container">
 
-    <div class="section-heading">
-        <small>MY WORK / پروژه‌ها</small>
-        <h2>نمونه‌کارهای من</h2>
-        <p>پروژه‌ها و تجربه‌های من در مسیر طراحی وب.</p>
+    <div class="section-heading reveal">
+        <small>MY PROJECTS / پروژه‌ها</small>
+        <h2>پروژه‌های منتخب من</h2>
+        <p>
+            بخشی از زمینه‌های کاری و پروژه‌های قابل ارائه من.
+        </p>
     </div>
 
     <div class="projects-grid">
 
-        <article class="project">
+        <article class="project reveal">
+
             <div class="project-number">PROJECT / 01</div>
-            <h3>طراحی وب‌سایت فروشگاهی</h3>
+
+            <h3>فروشگاه اینترنتی پاکار استایل</h3>
+
             <p>
-                طراحی و توسعه یک تجربه خرید اینترنتی
-                با رابط کاربری مدرن و ساختار منظم.
+                پروژه فروشگاه اینترنتی پوشاک با وردپرس،
+                با تمرکز بر طراحی فروشگاهی و تجربه خرید آنلاین.
             </p>
-            <span class="project-label">E-COMMERCE</span>
+
+            <span class="project-label">
+                WORDPRESS / E-COMMERCE
+            </span>
+
+            <div style="margin-top:20px">
+                <a href="https://pakarstyle.ir"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-secondary">
+                    مشاهده وب‌سایت ↗
+                </a>
+            </div>
+
         </article>
 
-        <article class="project">
+        <article class="project reveal">
+
             <div class="project-number">PROJECT / 02</div>
-            <h3>کارت ویزیت دیجیتال</h3>
+
+            <h3>کارت ویزیت دیجیتال شخصی</h3>
+
             <p>
-                طراحی صفحه شخصی دیجیتال برای معرفی
-                حرفه‌ای و دسترسی سریع به راه‌های ارتباطی.
+                طراحی یک پرسونال برند دیجیتال با رابط کاربری
+                مدرن، نمایش اطلاعات و دسترسی سریع به راه‌های ارتباطی.
             </p>
-            <span class="project-label">PERSONAL BRAND</span>
+
+            <span class="project-label">
+                HTML / CSS / RESPONSIVE
+            </span>
+
         </article>
 
     </div>
@@ -895,10 +1064,10 @@ footer strong {
 
 <!-- CONTACT -->
 
-<section class="content-section" id="contact">
+<section class="section" id="contact">
 <div class="container">
 
-    <div class="contact-card">
+    <div class="contact-card reveal">
 
         <h2>
             بیایید یک ایده جذاب بسازیم!
@@ -906,33 +1075,42 @@ footer strong {
 
         <p>
             برای ارتباط، همکاری یا آشنایی بیشتر
-            می‌تونی از طریق راه‌های ارتباطی زیر با من در تماس باشی.
+            می‌تونی از طریق راه‌های ارتباطی با من در تماس باشی.
         </p>
 
-        <div class="hero-buttons">
+        <div class="contact-buttons">
 
-            <!-- شماره خودت را جایگزین کن -->
+            <!-- Replace YOUR_PHONE with international phone number -->
+
             <a href="tel:YOUR_PHONE" class="btn btn-primary">
                 ☎ تماس با من
             </a>
 
-            <!-- آیدی اینستاگرام را جایگزین کن -->
-            <a
-                href="https://instagram.com/YOUR_ID"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary"
-            >
+            <!-- Replace YOUR_ID with Instagram username -->
+
+            <a href="https://instagram.com/YOUR_ID"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-secondary">
                 ◎ اینستاگرام
             </a>
 
-            <a
-                href="https://t.me/YOUR_ID"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary"
-            >
+            <!-- Replace YOUR_ID with Telegram username -->
+
+            <a href="https://t.me/YOUR_ID"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-secondary">
                 ➤ تلگرام
+            </a>
+
+            <!-- Replace YOUR_PHONE with WhatsApp number -->
+
+            <a href="https://wa.me/YOUR_PHONE"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-secondary">
+                ◉ واتساپ
             </a>
 
         </div>
@@ -954,7 +1132,7 @@ footer strong {
     </p>
 
     <p>
-        © 2026 ABBAS. All Rights Reserved.
+        © <span id="year"></span> ABBAS. All Rights Reserved.
     </p>
 
 </div>
@@ -962,26 +1140,92 @@ footer strong {
 
 <script>
 
+// MOBILE MENU
+
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
 menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
 
-    menuBtn.textContent =
-        navLinks.classList.contains("active") ? "✕" : "☰";
+    const isOpen = navLinks.classList.toggle("open");
+
+    menuBtn.textContent = isOpen ? "✕" : "☰";
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+
 });
+
+// CLOSE MENU AFTER CLICK
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        navLinks.classList.remove("active");
+        navLinks.classList.remove("open");
         menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
 
     });
 
 });
+
+// PROFILE IMAGE ERROR HANDLING
+
+const profileImage = document.getElementById("profileImage");
+const imageFallback = document.getElementById("imageFallback");
+
+profileImage.addEventListener("error", () => {
+
+    profileImage.style.display = "none";
+    imageFallback.style.display = "flex";
+
+});
+
+profileImage.addEventListener("load", () => {
+
+    profileImage.style.display = "block";
+    imageFallback.style.display = "none";
+
+});
+
+// REVEAL ANIMATIONS
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.12
+    });
+
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
+
+} else {
+
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
+
+}
+
+// AUTOMATIC YEAR
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
 
 </script>
 
