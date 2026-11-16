@@ -65,7 +65,7 @@ button { font-family: inherit; }
 .bg-glow {
     position: fixed;
     inset: 0;
-    z-index: -2;
+    z-index: -3;
     pointer-events: none;
     background:
         radial-gradient(circle at 10% 10%, rgba(22, 140, 255, 0.15), transparent 40%),
@@ -75,10 +75,44 @@ button { font-family: inherit; }
 .bg-noise {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
     opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ORBS (Floating Neon Bubbles) */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
+    animation: floatOrb 15s ease-in-out infinite alternate;
+}
+.orb-1 {
+    width: 300px; height: 300px;
+    background: #168cff;
+    top: -50px; left: -100px;
+    animation-delay: 0s;
+}
+.orb-2 {
+    width: 250px; height: 250px;
+    background: #bb55ff;
+    bottom: -50px; right: -100px;
+    animation-delay: -5s;
+}
+.orb-3 {
+    width: 200px; height: 200px;
+    background: #28d9ff;
+    top: 40%; left: 60%;
+    opacity: 0.15;
+    animation-delay: -10s;
+}
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, -60px) scale(1.2); }
 }
 
 /* ==================== HEADER ==================== */
@@ -88,9 +122,9 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10, 10, 15, 0.7);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border-bottom: 1px solid var(--card-border);
 }
 
@@ -111,6 +145,12 @@ header {
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textShine 3s linear infinite;
+}
+
+@keyframes textShine {
+    to { background-position: 200% center; }
 }
 
 .nav-links {
@@ -124,11 +164,29 @@ header {
     font-size: 14px;
     font-weight: 500;
     transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+    border-radius: 2px;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--text);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 
 .nav-action {
@@ -139,11 +197,13 @@ header {
     font-size: 13px;
     font-weight: 700;
     transition: transform 0.3s, box-shadow 0.3s;
+    background-size: 200% auto;
 }
 
 .nav-action:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(22, 140, 255, 0.4);
+    animation: textShine 2s linear infinite;
 }
 
 .menu-btn {
@@ -185,6 +245,7 @@ header {
     color: var(--cyan);
     width: fit-content;
     margin-bottom: 25px;
+    backdrop-filter: blur(10px);
 }
 
 .dot {
@@ -213,6 +274,8 @@ header {
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textShine 4s linear infinite;
 }
 
 .hero-description {
@@ -240,10 +303,13 @@ header {
     font-weight: 700;
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
     background: var(--gradient);
+    background-size: 200% auto;
     color: white;
     border: none;
     box-shadow: 0 8px 25px rgba(22, 140, 255, 0.3);
@@ -252,6 +318,7 @@ header {
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(22, 140, 255, 0.5);
+    animation: textShine 2s linear infinite;
 }
 
 .btn-secondary {
@@ -265,9 +332,10 @@ header {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* ==================== PROFILE IMAGE (FIXED) ==================== */
+/* ==================== PROFILE IMAGE (ANIMATED RING) ==================== */
 .hero-visual {
     position: relative;
     display: flex;
@@ -284,25 +352,38 @@ header {
     background: var(--gradient);
     animation: float 6s ease-in-out infinite;
     box-shadow: 0 0 50px rgba(22, 140, 255, 0.2);
+    z-index: 1;
 }
 
+/* The rotating ring */
 .profile-wrapper::before {
     content: '';
     position: absolute;
     inset: -15px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: spin 10s linear infinite;
+    border: 2px dashed rgba(40, 217, 255, 0.4);
+    animation: spin 12s linear infinite;
+}
+
+.profile-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -25px;
+    border-radius: 50%;
+    border: 1px solid rgba(187, 85, 255, 0.2);
+    animation: spin 20s linear infinite reverse;
 }
 
 .profile-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top; /* برای اینکه چهره در مرکز دایره بیفته */
+    object-position: center top;
     border-radius: 50%;
     border: 4px solid var(--bg);
     display: block;
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes float {
@@ -358,6 +439,12 @@ header {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.about-card:hover {
+    border-color: rgba(40, 217, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .about-text {
@@ -377,13 +464,14 @@ header {
     border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 20px;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .info-box:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(40, 217, 255, 0.3);
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .info-box span {
@@ -418,13 +506,18 @@ header {
 .skill-card:hover {
     transform: translateY(-8px);
     border-color: rgba(40, 217, 255, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(40, 217, 255, 0.1);
 }
 
 .skill-icon {
     font-size: 36px;
     margin-bottom: 15px;
     display: block;
+    transition: transform 0.4s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .skill-card h3 {
@@ -474,7 +567,7 @@ header {
 .project-card:hover {
     transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 30px rgba(22, 140, 255, 0.05);
 }
 
 .project-number {
@@ -517,6 +610,21 @@ header {
     padding: 60px 30px;
     text-align: center;
     backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--cyan);
+    filter: blur(100px);
+    opacity: 0.1;
+    top: -50px;
+    right: -50px;
+    border-radius: 50%;
 }
 
 .contact-card h2 {
@@ -567,7 +675,7 @@ footer strong {
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .reveal.visible {
@@ -623,6 +731,9 @@ footer strong {
 
 <div class="bg-glow"></div>
 <div class="bg-noise"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
 
 <!-- HEADER -->
 <header>
@@ -760,14 +871,14 @@ footer strong {
         <h2>بیایید یک ایده جذاب بسازیم!</h2>
         <p>برای ارتباط، همکاری یا آشنایی بیشتر می‌تونی از طریق راه‌های ارتباطی با من در تماس باشی.</p>
         <div class="contact-buttons">
-            <!-- شماره تلفن خود را جایگزین YOUR_PHONE کنید -->
-            <a href="tel:YOUR_PHONE" class="btn btn-primary">☎ تماس با من</a>
-            <!-- آیدی اینستاگرام خود را جایگزین YOUR_ID کنید -->
-            <a href="https://instagram.com/YOUR_ID" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">◎ اینستاگرام</a>
-            <!-- آیدی تلگرام خود را جایگزین YOUR_ID کنید -->
-            <a href="https://t.me/YOUR_ID" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">➤ تلگرام</a>
-            <!-- شماره واتساپ خود را جایگزین YOUR_PHONE کنید (با کد کشور) -->
-            <a href="https://wa.me/YOUR_PHONE" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">◉ واتساپ</a>
+            <!-- دکمه تماس با شماره تلفن شما -->
+            <a href="tel:09050096685" class="btn btn-primary">☎ تماس با من</a>
+            <!-- دکمه اینستاگرام با آیدی شما -->
+            <a href="https://instagram.com/OxAbbas_NeuralKernel" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">◎ اینستاگرام</a>
+            <!-- دکمه تلگرام (در صورت نیاز آیدی خود را وارد کنید) -->
+            <a href="https://t.me/OxAbbas_NeuralKernel" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">➤ تلگرام</a>
+            <!-- دکمه واتساپ (شماره با کد کشور) -->
+            <a href="https://wa.me/989050096685" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">◉ واتساپ</a>
         </div>
     </div>
 </div>
